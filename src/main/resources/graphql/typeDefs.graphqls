@@ -1,5 +1,5 @@
 type User{
-    id : Int!
+    id : ID!
     username : String!
     country : String!
     email : String!
@@ -8,8 +8,7 @@ type User{
 }
 
 type Post{
-    id : Int!
-    userId : String!
+    id : ID!
     content : String!
     publicationDate : String!
     user : User!
@@ -17,6 +16,7 @@ type Post{
 
 type Query{
     getPosts : [Post]!
+    getPostsByUserId (userId : ID!): [Post]!
     getUsers : [User]!
     getUser(id : ID!) : User
     getPost(id : ID!) : Post
