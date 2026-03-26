@@ -1,0 +1,23 @@
+type User{
+    id : Int!
+    username : String!
+    country : String!
+    email : String!
+    tel : String
+    posts : [Post]!
+}
+
+type Post{
+    id : Int!
+    userId : String!
+    content : String!
+    publicationDate : String!
+    user : User!
+}
+
+type Query{
+    getPosts : [Post]!
+    getUsers : [User]!
+    getUser(id : ID!) : User
+    getPost(id : ID!) : Post
+}
