@@ -1,7 +1,10 @@
 package com.example.hw_graphql.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +16,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    private LocalDateTime publicationDate;
+
+    private LocalDateTime publicationDate = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name="user_id")

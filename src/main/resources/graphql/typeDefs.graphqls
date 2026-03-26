@@ -21,3 +21,11 @@ type Query{
     getUser(id : ID!) : User
     getPost( postId : ID!) : Post
 }
+
+type Mutation{
+    createPost (userId : ID! , content : String! ) : Post!
+    deletePost (postId : ID!) : Post!
+    updatePost (newContent : String! , postId : ID!) : Post!
+    createUser ( username : String! , country : String! , email : String! , tel : String ) : User
+    deleteUser (userId : ID!) : User
+}
