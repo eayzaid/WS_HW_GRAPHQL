@@ -15,29 +15,24 @@ import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
-public class PostController {
+public class UserController {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
     @QueryMapping
-    public List<Post> getPosts() {
-        return postRepository.findAll();
+    public List<User> getUsers() {
+        return userRepository.findAll();
     }
 
     @QueryMapping
-    public Optional<Post> getPost(@Argument Long postId) {
-        return postRepository.findById(postId);
+    public Optional<User> getUser(@Argument Long userId) {
+        return userRepository.findById(userId);
     }
 
-    @QueryMapping
-    public List<Post> getPostsByUserId(@Argument Long userId){
-        return postRepository.findByUserId(userId);
-    }
-
-    @SchemaMapping(typeName = "Post",field="user")
-    public Optional<User> getUserByPost(Post post){
-        return userRepository.findById(post.getUser().getId());
+    @SchemaMapping(typeName = "User",field="posts")
+    public List<Post> getPostsByUserId(User user){
+        return postRepository.findByUserId(user.getId());
     }
 
 }
