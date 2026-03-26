@@ -6,6 +6,7 @@ import com.example.hw_graphql.repositories.PostRepository;
 import com.example.hw_graphql.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -34,5 +35,25 @@ public class UserController {
     public List<Post> getPostsByUserId(User user){
         return postRepository.findByUserId(user.getId());
     }
+
+    @MutationMapping
+    public User createUser ( @Argument String username , @Argument String country , @Argument String email ,@Argument String tel  ){
+        User newUser = new User();
+        newUser.setCountry(country);
+        newUser.setTel(tel);
+        newUser.setEmail(email);
+        newUser.setUsername(username);
+        userRepository.save(newUser);
+        return newUser;
+    }
+
+    @MutationMapping
+    public User deleteUser( @Argument Long userId){
+        User removedUser = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User is not found"));
+        userRepository.deleteById(userId);
+        return removedUser;
+    }
+
+
 
 }

@@ -18,7 +18,7 @@ type Query{
     getPosts : [Post]!
     getPostsByUserId (userId : ID!): [Post]!
     getUsers : [User]!
-    getUser(id : ID!) : User
+    getUser(userId : ID!) : User
     getPost( postId : ID!) : Post
 }
 
